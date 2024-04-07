@@ -1,25 +1,27 @@
-// Load environment variables from .env file
-require('dotenv').config();
-
-// Import necessary modules
 const express = require('express');
+const bodyParser = require('body-parser');
+const connectDB = require('./Database/db');
+const signupRoute = require('./Router/signup');
 
-// Create an instance of Express application
 const app = express();
-
-// Define a port for the server to listen on
 const PORT = process.env.PORT || 3000;
 
-// Define a route for the root URL
-app.get('/', (req, res) => {
-    res.send('Hello, this is your Node.js server!');
-});
+// Middleware
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something went wrong!');
-});
+// Connect to MongoDB
+connectDB();
+
+// Middleware for home page logging
+// app.use('/', (req, res, next) => {
+//     console.log("Server received a request on the home page");
+//     res.status(200).send(" server app is working");
+//     next(); // Call next to pass control to the next middleware in the stack
+// });
+
+// Routes
+app.use('/signup', signupRoute);
 
 // Start the server
 app.listen(PORT, () => {
