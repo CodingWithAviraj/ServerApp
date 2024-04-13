@@ -9,11 +9,21 @@ const PORT = process.env.PORT || 3000;
 
 console.log("in server.js file");
 
-server.use(cors({
-    origin: process.env.Origin
-  }));
-server.use(App);
+  try{
+    server.use(cors({
+        origin: process.env.ORIGIN
+      }))    
+  }
+  catch(err){
+    console.log("cors issue : " + err);
+  }
 
+  try{
+    server.use(App);
+  }
+  catch(err){
+    console.log("app issue : " + err);
+  }
 connectDB().then(() =>{
     console.log("db connected");
     server.listen(PORT, () => {
