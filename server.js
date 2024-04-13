@@ -9,14 +9,18 @@ const PORT = process.env.PORT || 3000;
 
 console.log("in server.js file");
 
-  try{
+server.use((req, res, next) => {
+  try {
     server.use(cors({
-        origin: process.env.ORIGIN
-      }))    
+      origin: 'https://codingwithaviraj.github.io'
+    }));  
+      next();
+  } catch (err) {
+      console.error('CORS setup error:', err);
+      next(err);
   }
-  catch(err){
-    console.log("cors issue : " + err);
-  }
+ });
+
 
   try{
     server.use(App);
