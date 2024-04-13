@@ -15,7 +15,6 @@ app.use(bodyParser.json());
 // connectDB();
 
 // Routes
-
 app.get('/', (req, res)=>{
     console.log("Welcome to home Page!!");
     res.status(200).json("Welcome to home Page!!");

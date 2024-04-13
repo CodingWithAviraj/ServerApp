@@ -24,6 +24,7 @@ console.log("in server.js file");
   catch(err){
     console.log("app issue : " + err);
   }
+  console.log("before db connected");
 connectDB().then(() =>{
     console.log("db connected");
     server.listen(PORT, () => {
