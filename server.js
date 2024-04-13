@@ -7,12 +7,15 @@ const connectDB = require('./Database/db');
 const server = express();
 const PORT = process.env.PORT || 3000;
 
+console.log("in server.js file");
+
 server.use(cors({
     origin: process.env.Origin
   }));
 server.use(App);
 
 connectDB().then(() =>{
+    console.log("db connected");
     server.listen(PORT, () => {
         console.log(`Server is running on http://127.0.0.1:5000`);
     });
