@@ -28,7 +28,7 @@ console.log("in server.js file");
 connectDB().then(() =>{
     console.log("db connected");
     server.listen(PORT, () => {
-        console.log(`Server is running on http://127.0.0.1:5000`);
+        console.log(`Server is running on http://127.0.0.1:${PORT}`);
     });
 }).catch(err = ()=>{
     console.log(" mongo not working");
