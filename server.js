@@ -11,9 +11,7 @@ console.log("in server.js file");
 
 server.use((req, res, next) => {
   try {
-    server.use(cors({
-      origin: 'https://codingwithaviraj.github.io'
-    }));  
+    server.use(cors());  
       next();
   } catch (err) {
       console.error('CORS setup error:', err);
